@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
         }
 
@@ -25,24 +27,22 @@
         }
     </style>
 </head>
+
 <body class="h-full grid place-items-center">
     <div id="app">
         <section v-show="inProgressAssigmnets.length">
             <h2 class="font-bold mb-2">In Progress</h2>
 
             <ul>
-                <li 
-                    v-for="assigment in inProgressAssigmnets" 
-                    :key="assigment.id"
-                >
+                <li v-for="assigment in inProgressAssigmnets" :key="assigment.id">
                     <label>
                         {{ assigment.name }}
                         <input type="checkbox" v-model="assigment.complete">
                     </label>
                 </li>
-           </ul>
+            </ul>
 
-           <!--
+            <!--
            <pre>
             {{ assigments }}
            </pre>
@@ -54,18 +54,15 @@
             <h2 class="font-bold mb-2">Completed</h2>
 
             <ul>
-                <li 
-                    v-for="assigment in completedAssigments" 
-                    :key="assigment.id"
-                >
+                <li v-for="assigment in completedAssigments" :key="assigment.id">
                     <label>
                         {{ assigment.name }}
                         <input type="checkbox" v-model="assigment.complete">
                     </label>
                 </li>
-           </ul>
+            </ul>
 
-           <!--
+            <!--
            <pre>
             {{ assigments }}
            </pre>
@@ -75,21 +72,21 @@
 
     <script>
         let app = {
-            data () {
+            data() {
                 return {
                     assigments: [
                         { name: 'Finish project', complete: false, id: 1 },
                         { name: 'Read chapter 4', complete: false, id: 2 },
                         { name: 'Turn in homework', complete: false, id: 3 },
 
-                    ]    
+                    ]
                 }
             },
 
-            <!-- Вычисляемые свойства -->
+            // Вычисляемые свойства
             computed: {
                 inProgressAssigmnets() {
-                    return this.assigments.filter(a => ! a.complete); 
+                    return this.assigments.filter(a => !a.complete);
                 },
                 completedAssigments() {
                     return this.assigments.filter(a => a.complete);
