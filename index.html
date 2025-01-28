@@ -7,89 +7,26 @@
     <title>Course Vue.js</title>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            display: grid;
-            place-items: center;
-        }
-
-        .text-red {
-            color: red;
-        }
-
-        .text-green {
-            color: green;
-        }
-    </style>
 </head>
 
-<body class="h-full grid place-items-center bg-gray">
+<body class="h-full grid place-items-cente">
     <div id="app">
-        <section v-show="inProgressAssigmnets.length">
-            <h2 class="font-bold mb-2">In Progress</h2>
-
-            <ul>
-                <li v-for="assigment in inProgressAssigmnets" :key="assigment.id">
-                    <label>
-                        {{ assigment.name }}
-                        <input type="checkbox" v-model="assigment.complete">
-                    </label>
-                </li>
-            </ul>
-
-            <!--
-           <pre>
-            {{ assigments }}
-           </pre>
-            -->
-        </section>
-
-        <!-- Можно также использовать v-if -->
-        <section v-show="completedAssigments.length" class="mt-8">
-            <h2 class="font-bold mb-2">Completed</h2>
-
-            <ul>
-                <li v-for="assigment in completedAssigments" :key="assigment.id">
-                    <label>
-                        {{ assigment.name }}
-                        <input type="checkbox" v-model="assigment.complete">
-                    </label>
-                </li>
-            </ul>
-
-            <!--
-           <pre>
-            {{ assigments }}
-           </pre>
-            -->
-        </section>
+        <app-button>Test2</app-button>
     </div>
 
     <script>
         let app = {
-            data() {
-                return {
-                    assigments: [
-                        { name: 'Finish project', complete: false, id: 1 },
-                        { name: 'Read chapter 4', complete: false, id: 2 },
-                        { name: 'Turn in homework', complete: false, id: 3 },
+            components: {
+                'appButton': {
+                    template: `
+                        <button class="bg-gray-200 hover:bg-gray-400 border rounded px-5 py-2 disabled:cursor-not-allowed" :disabled="processing"><slot /></button>
+                    `,
 
-                    ]
-                }
-            },
-
-            // Вычисляемые свойства
-            computed: {
-                inProgressAssigmnets() {
-                    return this.assigments.filter(a => !a.complete);
-                },
-                completedAssigments() {
-                    return this.assigments.filter(a => a.complete);
+                    data() {
+                        return {
+                            processing: true
+                        }
+                    }
                 }
             }
         };
