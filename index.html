@@ -12,27 +12,12 @@
 
 <body class="h-full grid place-items-center">
     <div id="app">
-        <app-button>Test3</app-button>
+        <app-button>Test7</app-button>
     </div>
 
-    <script>
-        //import AppButton from './js/components/AppButton.jss';
+    <script type="module">
+        import App from './js/components/App.js';
 
-        let app = {
-            components: {
-                'appButton': {
-                    template: `
-                        <button class="bg-gray-200 hover:bg-gray-400 border rounded px-5 py-2 disabled:cursor-not-allowed" :disabled="processing"><slot /></button>
-                    `,
-                    data() {
-                        return {
-                            processing: true
-                        }
-                    }
-                }
-            }
-        };
-
-        Vue.createApp(app).mount('#app');
+        Vue.createApp(App).mount('#app');
     </script>
 </body>
