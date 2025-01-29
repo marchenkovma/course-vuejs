@@ -1,7 +1,12 @@
-import AppButton from "./AppButton.js";
+import Assigments from "./Assigments.js";
 
 export default {
+    // Компонент необходимо зарегистировать
     components: {
-        'appButton': AppButton
-    }
+        Assigments
+    },
+
+    template: `
+        <assigments></assigments>
+    `
 };
