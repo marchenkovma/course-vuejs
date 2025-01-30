@@ -1,12 +1,12 @@
-import Assigments from "./Assigments.js";
+import Assignments from "./Assignments.js";
 
 export default {
     // Компонент необходимо зарегистировать
     components: {
-        Assigments
+        Assignments
     },
 
     template: `
-        <assigments></assigments>
+        <assignments></assignments>
     `
 };
