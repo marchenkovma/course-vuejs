@@ -1,13 +1,13 @@
 import AssignmentList from "./AssignmentList.js";
 
 export default {
-    components: {
-        AssignmentList
-    },
+    components: { AssignmentList },
 
     template: `
-        <assignment-list :assignments="inProgressAssignments" title="In progress"></assignment-list>
-        <assignment-list :assignments="completedAssignments" title="Completed"></assignment-list>
+        <section class="space-y-6">
+            <assignment-list :assignments="filters.inProgress" title="In progress"></assignment-list>
+            <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
+        </section>    
     `,
 
     data() {
@@ -21,13 +21,12 @@ export default {
         }
     },
 
-    // Вычисляемые свойства
     computed: {
-        inProgressAssignments() {
-            return this.assignments.filter(a => !a.complete);
-        },
-        completedAssignments() {
-            return this.assignments.filter(a => a.complete);
+        filters() {
+            return {
+                inProgress: this.assignments.filter(assignment => !assignment.complete),
+                completed: this.assignments.filter(assignment => assignment.complete),
+            };
         }
     }
 };
