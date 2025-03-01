@@ -1,7 +1,8 @@
 import Assignment from './Assignment';
+import AssignmentTags from './AssingmentTags';
 
 export default {
-    components: { Assignment },
+    components: { Assignment, AssignmentTags },
 
     template: `
         <section v-show="assignments.length">
@@ -10,19 +11,11 @@ export default {
                 <span>({{ assignments.length }})</span>
             </h2>
 
-            <div class="flex gap-2">
-                <!-
-                    v-on:click=""
-                -->
-                <button
-                    @click ="currentTag = tag" 
-                    v-for="tag in tags" 
-                    class="border rounded px-1 py- text-sm"
-                    :class="{
-                        'border-blue-500 text-blue-500': tag === currentTag
-                    }"
-                >{{ tag }}</button>
-            </div>
+            <assignment-tags 
+                :initial-tags="assignments.map(a => a.tag)"
+                :current-tag="currentTag"
+                @change="currentTag = $event"
+            />
 
             <ul class="border border-gray-600 divide-y divide-gray-600 mt-6">
                 <assignment
